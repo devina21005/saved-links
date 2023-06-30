@@ -14,11 +14,8 @@ if (localStorage.getItem("ourList") === null) {
     localStorage.setItem("ourList", "");
 } else if(localStorage.getItem("ourList") !== "") {
     ourLeads = JSON.parse(localStorage.getItem("ourList"));
-    // ourLeads.remove("hujan.com");
     renderLeads();
 }
-
-
 
 inputButtonEl.addEventListener(
     "click", function() {
@@ -36,15 +33,6 @@ bodyEl.addEventListener(
     }
 )
 
-function inputToLocalStorage(value) {
-    if (value.startsWith("https://")) {
-        value = value.replace("https://", "");
-    }
-    ourLeads.push(value);
-    localStorage.setItem("ourList", JSON.stringify(ourLeads));
-    renderLeads();
-}
-
 deleteButtonEl.addEventListener(
     "click", function() {
         if (confirm("Are you sure to delete all of your saved links?")) {
@@ -55,14 +43,6 @@ deleteButtonEl.addEventListener(
     }
 )
 
-// deleteButtonEl.addEventListener(
-//     "dblclick", function() {
-//         localStorage.removeItem("ourList");
-//         inputLst.innerHTML = '';
-//         ourLeads = [];
-//     }
-// )
-
 tabButtonEl.addEventListener(
     "click", function() {
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
@@ -70,10 +50,18 @@ tabButtonEl.addEventListener(
         })
     }
 )
+
+function inputToLocalStorage(value) {
+    if (value.startsWith("https://")) {
+        value = value.replace("https://", "");
+    }
+    ourLeads.push(value);
+    localStorage.setItem("ourList", JSON.stringify(ourLeads));
+    renderLeads();
+}
     
 
 function renderLeads() {
-    // console.log(localStorage.getItem("ourList"));
     let myLeads = JSON.parse(localStorage.getItem("ourList"));
     let strList = '';
     for (let i = 0; i < myLeads.length; i++) {
@@ -89,7 +77,6 @@ function renderLeads() {
         // inputLst.append(liEl);
     }
     inputLst.innerHTML = strList; 
-    
     deleteLead();
 }
 
@@ -100,22 +87,21 @@ function deleteLead() {
         const id = `leads-${i}`;
         const leadsToBeDeleted = document.getElementById(id);
         leadsToBeDeleted.addEventListener("contextmenu", (event) => {
-          event.preventDefault();
-          console.log(leadsToBeDeleted);
-          const { clientX: mouseX, clientY: mouseY } = event;
-        
-          contextMenu.style.top = `${mouseY}px`;
-          contextMenu.style.left = `${mouseX}px`;
-        
-          contextMenu.classList.add("visible");
-          deleteLeadEl.addEventListener("click", function() {
-              console.log("berhasil")
-              ourLeads.splice(i,1);
-              localStorage.setItem("ourList", JSON.stringify(ourLeads));
-              renderLeads();
-              contextMenu.classList.remove("visible");
-          }); 
+            event.preventDefault();
+            console.log(leadsToBeDeleted);
+            const { clientX: mouseX, clientY: mouseY } = event;
+            
+            contextMenu.style.top = `${mouseY}px`;
+            contextMenu.style.left = `${mouseX}px`;
+            
+            contextMenu.classList.add("visible");
+            deleteLeadEl.addEventListener("click", function() {
+                console.log("berhasil")
+                ourLeads.splice(i,1);
+                localStorage.setItem("ourList", JSON.stringify(ourLeads));
+                renderLeads();
+                contextMenu.classList.remove("visible");
+            }); 
         });
-
     }
 }
