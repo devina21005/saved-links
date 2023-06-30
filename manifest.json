@@ -4,7 +4,7 @@
     "name": "Saved Links",
     "action": {
         "default_popup": "index.html",
-        "default_icon": "icon.png"
+        "default_icon": "assets/icon.png"
     },
     "permissions": [
         "tabs"
