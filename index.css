@@ -1,0 +1,59 @@
+body {
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    min-width: 300px;
+}
+
+input {
+    width:100%;
+    height: 30;
+    border-radius: 0;
+    border-width: 1;
+    border-color: rgb(34, 160, 89);
+    padding: 10px;
+}
+
+button {
+    font-weight: bold;
+    margin-top: 10;
+    width: 100;
+    height: 30;
+    border: 1px solid rgb(34, 160, 89);
+    background-color: rgb(34, 160, 89);
+    color: white;
+}
+
+#delete-btn {
+    width: 205;
+    background-color: white;
+    color: rgb(34, 160, 89);
+    border: 1px solid rgb(34, 160, 89);
+}
+
+ul {
+    list-style-type: none;
+    text-align: left;
+    padding-left: 10;
+}
+
+#context-menu {
+    position: fixed;
+    z-index: 10000;
+    background: rgb(34, 160, 89);
+    display: none;
+}
+
+#context-menu.visible {
+    display: block;
+}
+  
+#context-menu .item {
+    padding: 5px 8px;
+    color: #eee;
+    cursor: pointer;
+    border-radius: inherit;
+}
+  
+#context-menu .item:hover {
+    background: rgb(7, 77, 37);
+}
