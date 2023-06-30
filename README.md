@@ -2,7 +2,7 @@
 
 **Saved Links** is a Chrome extension to save multiple links 
 
-#### How to use Saved Links
+##### How to use Saved Links
 * Download the ZIP folder
 * Extract the ZIP folder
 * Open your Chrome browser
