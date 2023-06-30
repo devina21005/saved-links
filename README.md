@@ -2,7 +2,8 @@
 
 **Saved Links** is a Chrome extension to save multiple links 
 
-#### How to use *Saved Links*
+### How to use *Saved Links*
+
 * Download the ZIP folder
 * Extract the ZIP folder
 * Open your Chrome browser
@@ -12,4 +13,7 @@
 * Select the extracted folder
 * The extension is now can be used
 
-<a href="https://www.youtube.com/watch?v=jS4aFq5-91M" target="_blank">Reference</a>
+### Credits
+
+[Reference](https://www.youtube.com/watch?v=jS4aFq5-91M)
+
