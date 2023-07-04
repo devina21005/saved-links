@@ -17,18 +17,29 @@ if (localStorage.getItem("ourList") === null) {
     renderLeads();
 }
 
-inputButtonEl.addEventListener(
-    "click", function() {
+inputButtonEl.addEventListener("click", function() {
         inputToLocalStorage(inputEl.value);
         inputEl.value = '';
     }
-
 )
+
+inputEl.addEventListener("keypress", function(event) {
+    if (event.key == "Enter") {
+        inputToLocalStorage(inputEl.value);
+        inputEl.value = '';
+    }
+})
+
+
 
 bodyEl.addEventListener(
     "click", function(event) {
         if (event.target.offsetParent != contextMenu) {
             contextMenu.classList.remove("visible");
+            for(let i = 0; i < ourLeads.length; i++) {
+                const leadsToBeDeleted = document.getElementById(`leads-${i}`);
+                leadsToBeDeleted.classList.remove("highlighted");
+            }
         }
     }
 )
@@ -54,6 +65,10 @@ tabButtonEl.addEventListener(
 function inputToLocalStorage(value) {
     if (value.startsWith("https://")) {
         value = value.replace("https://", "");
+    }
+    if (!value) {
+        console.log('o')
+        return;
     }
     ourLeads.push(value);
     localStorage.setItem("ourList", JSON.stringify(ourLeads));
@@ -86,9 +101,12 @@ function deleteLead() {
     for (let i = 0; i < leadsLst.length; i++) {
         const id = `leads-${i}`;
         const leadsToBeDeleted = document.getElementById(id);
+        // Reference:
+        // https://itnext.io/how-to-create-a-custom-right-click-menu-with-javascript-9c368bb58724
         leadsToBeDeleted.addEventListener("contextmenu", (event) => {
             event.preventDefault();
-            console.log(leadsToBeDeleted);
+            leadsToBeDeleted.classList.add("highlighted");
+            // console.log(leadsToBeDeleted);
             const { clientX: mouseX, clientY: mouseY } = event;
             
             contextMenu.style.top = `${mouseY}px`;

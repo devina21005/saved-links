@@ -2,6 +2,8 @@ body {
     text-align: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     min-width: 300px;
+    max-width: 300px;
+    box-sizing: border-box;
 }
 
 input {
@@ -33,13 +35,20 @@ button {
 ul {
     list-style-type: none;
     text-align: left;
-    padding-left: 10;
+    padding-left: 10px;
+}
+
+
+
+
+.highlighted {
+    background-color: rgba(217, 220, 219, 0.886);
 }
 
 #context-menu {
     position: fixed;
     z-index: 10000;
-    background: rgb(34, 160, 89);
+    background: rgb(194, 66, 46);
     display: none;
 }
 
@@ -55,5 +64,5 @@ ul {
 }
   
 #context-menu .item:hover {
-    background: rgb(7, 77, 37);
+    background: rgb(241, 40, 9);
 }
